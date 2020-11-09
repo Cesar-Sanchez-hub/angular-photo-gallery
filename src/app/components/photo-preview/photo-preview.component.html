@@ -1,0 +1,38 @@
+<p>photo-preview.ccomponente.html</p>
+<!-- el if es mientras se carga la foto -->
+<div class="row" *ngIf="!photo; else main_content">
+        <h1>Loading....</h1>
+</div>
+{{ photo | json}}
+<p> despues del if </p>
+<ng-template #main_content>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+  <!--parece esta tomando la foto desde ngOninit -->
+                <img [src]="'http://localhost:4000/' + photo.imagePath" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <form class="card-body" (submit)="updatePhoto(title, description)">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Photo's title" [value]="photo.title" #title>
+                    </div>
+                    <p>dato tsitle</p>
+                     {{title.value}}
+                     <p>dato</p>
+                    <div class="form-group">
+                        <textarea rows="2" class="form-control" placeholder="Photo's Description" [value]="photo.description" #description></textarea>
+                    </div>
+                    <button class="btn-primary btn-block">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-danger" (click)="deletePhoto(photo._id)"> 
+        Delete
+    </button>
+</ng-template>

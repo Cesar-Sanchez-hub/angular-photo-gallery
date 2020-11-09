@@ -1,0 +1,15 @@
+<div class="row">
+    <p>ListComponent</p>
+    <div class="col-md-4 p-4" *ngFor="let photo of photos">
+        <div class="card card-photo" (click)="selectCard(photo._id)">
+            <div class="card-header">
+                {{ photo | json }}
+                {{ photo.title }}
+              </div>
+                  <img [src]="'http://localhost:4000/' + photo.imagePath" class="img-card-top w-100">
+              <div class="card-body">
+                {{ photo.description }}
+            </div>
+        </div>
+    </div>
+</div>
